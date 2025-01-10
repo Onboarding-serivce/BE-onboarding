@@ -33,7 +33,7 @@ jobs:
         uses: docker/build-push-action@v6
         env:
           REGISTRY: ghcr.io
-          REPOSITORY: BE-onboarding
+          REPOSITORY: be-onboarding
           IMAGE_TAG: ${{ github.sha }}
         with:
           push: true
