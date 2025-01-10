@@ -31,18 +31,15 @@ jobs:
 
       - name: Build, tag, and push 
         uses: docker/build-push-action@v6
-        id: build-image
         env:
           REGISTRY: ghcr.io
-          REPOSITORY: front
+          REPOSITORY: BE-onboarding
           IMAGE_TAG: ${{ github.sha }}
         with:
           push: true
           tags: | 
-            ghcr.io/Onboarding-serivce/BE-onboarding:$IMAGE_TAG
-            ghcr.io/Onboarding-serivce/BE-onboarding:latest
-          # cache-from: type=gha              
-          # cache-to: type=gha,mode=max
+            ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}
+            ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:latest
 
 
 
