@@ -33,13 +33,14 @@ jobs:
         uses: docker/build-push-action@v6
         env:
           REGISTRY: ghcr.io
+          ORGANIZATION: onboarding-serivce
           REPOSITORY: be-onboarding
           IMAGE_TAG: ${{ github.sha }}
         with:
           push: true
           tags: | 
-            ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}
-            ${{ env.REGISTRY }}/${{ env.REPOSITORY }}:latest
+            ${{ env.REGISTRY }}/${{ env.ORGANIZATION }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}
+            ${{ env.REGISTRY }}/${{ env.ORGANIZATION }}/${{ env.REPOSITORY }}:latest
 
 
 
