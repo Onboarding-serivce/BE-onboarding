@@ -14,16 +14,17 @@ services:
       - db_data:/opt/oracle/oradata
 
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/onboarding-serivce/be-onboarding:latest
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
     container_name: spring-app
     ports:
       - "8080:8080"
-    volumes:
-      - ./src:/app/src
-      - ./build.gradle.kts:/app/build.gradle.kts
-      - ./settings.gradle.kts:/app/settings.gradle.kts
+    # volumes:
+    #   - ./src:/app/src
+    #   - ./build.gradle.kts:/app/build.gradle.kts
+    #   - ./settings.gradle.kts:/app/settings.gradle.kts
     env_file:
       - .env
     environment:
@@ -38,12 +39,12 @@ services:
       SPRING_APPLICATION_NAME: "${SPRING_APPLICATION_NAME}"
     # (4) 아래 command는 Dockerfile의 ENTRYPOINT를 덮어쓸 수 있음
     #    - 만약 Dockerfile 쪽 순서를 그대로 쓰려면 command를 생략하거나 동일하게 적어주면 됨
-    command: >
-      /app/wait-for-it.sh db:1521 -- bash -c "
-      source /root/.sdkman/bin/sdkman-init.sh &&
-      ./gradlew prepareSwagger &&
-      ./gradlew bootRun --rerun-tasks
-      "
+    # command: >
+    #   /app/wait-for-it.sh db:1521 -- bash -c "
+    #   source /root/.sdkman/bin/sdkman-init.sh &&
+    #   ./gradlew prepareSwagger &&
+    #   ./gradlew bootRun --rerun-tasks
+      # "
     depends_on:
       - db
 
